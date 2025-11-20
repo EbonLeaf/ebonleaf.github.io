@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EbonLeaf</title>
+
+<style>
+body{
+    margin:0;
+    font-family: "Trebuchet MS", sans-serif;
+    background:#fafafa;
+    text-align:center;
+}
+
+img.main-banner {
+    margin-top: 25px;
+    max-width: 85%;
+    height: auto;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.wave{
+    width:100%;
+    height:45px;
+    margin-top:25px;
+    margin-bottom:30px;
+    background-repeat: repeat-x;
+    background-size: 200px 45px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='45'><path d='M0 22 Q25 0 50 22 T100 22 T150 22 T200 22' fill='none' stroke='black' stroke-width='2'/></svg>");
+    animation: waveLoop 3s linear infinite;
+}
+
+@keyframes waveLoop {
+    0% { background-position: 0 0; }
+    100% { background-position: -200px 0; }
+}
+
+.container{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:45px;
+    margin-top:20px;
+}
+
+.box{
+    width:330px;
+    padding:25px;
+    background:white;
+    border:2.3px solid black;
+    border-radius:22px;
+    text-align:center;
+    box-shadow:3px 4px 0px #00000030;
+    transition:0.2s;
+}
+.box:hover{
+    transform:translateY(-4px);
+    box-shadow:6px 7px 0px #00000030;
+}
+
+.box h3{
+    font-size:26px;
+    margin:0;
+    letter-spacing:1px;
+}
+
+.underline{
+    width:70px;
+    height:4px;
+    background:#e46d25;
+    margin:8px auto 18px auto;
+    border-radius:3px;
+}
+
+.box p{
+    font-size:15px;
+    line-height:1.5em;
+}
+
+.links ul{
+    list-style:none;
+    padding:0;
+    margin:8px 0;
+}
+
+.links a{
+    text-decoration:none;
+    font-size:16px;
+    color:#e46d25;
+    font-weight:bold;
+}
+.links a:hover{
+    text-decoration:underline;
+}
+
+.small-wave{
+    height:35px;
+    margin-top:50px;
+    margin-bottom:0;
+    background-repeat: repeat-x;
+    background-size: 200px 35px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='35'><path d='M0 17 Q25 -2 50 17 T100 17 T150 17 T200 17' fill='none' stroke='black' stroke-width='2'/></svg>");
+    animation: waveLoop 3s linear infinite;
+}
+
+.footer{
+    margin-top:60px;
+    padding:20px 0;
+    font-size:14px;
+    color:#444;
+    background:#f0f0f0;
+    border-top:2px solid black;
+    letter-spacing:0.5px;
+}
+</style>
+</head>
+<body>
+
+<img src="banner.png" alt="Banner Image" class="main-banner">
+
+<div class="wave"></div>
+
+<div class="container">
+
+    <div class="box">
+        <h3>Hi There!</h3>
+        <div class="underline"></div>
+        <p>Hi there and welcome to my part of the internet!</p>
+    </div>
+
+    <div class="box">
+        <h3>What I Do</h3>
+        <div class="underline"></div>
+        <p>I make games and projects as a hobby.</p>
+        <p>I mostly use Python with the Pygame library to build all kinds of things.</p>
+    </div>
+
+    <div class="box">
+        <h3>Where to Find Me</h3>
+        <div class="underline"></div>
+        <p>You can find my work here:</p>
+
+        <div class="links">
+            <ul><a href="https://ebonleaf.itch.io/">itch.io</a></ul>
+            <ul><a href="https://github.com/EbonLeaf">GitHub</a></ul>
+            <ul><a href="https://youtube.com/@EbonLeaf">YouTube</a></ul>
+        </div>
+    </div>
+
+</div>
+
+<div class="small-wave"></div><br><br>
+
+<div>© 2025 EbonLeaf — All Rights Reserved.</div><br><br>
+
+</body>
+</html>
