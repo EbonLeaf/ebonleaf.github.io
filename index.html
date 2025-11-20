@@ -3,159 +3,224 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EbonLeaf</title>
-
+<title>EbonLeaf - Indie Game Developer</title>
 <style>
-body{
-    margin:0;
+body {
+    margin: 0;
     font-family: "Trebuchet MS", sans-serif;
-    background:#fafafa;
-    text-align:center;
+    background: #fafafa;
+    text-align: center;
+    overflow-x: hidden;
 }
 
 img.main-banner {
     margin-top: 25px;
     max-width: 85%;
     height: auto;
-    display:block;
-    margin-left:auto;
-    margin-right:auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.wave{
-    width:100%;
-    height:45px;
-    margin-top:25px;
-    margin-bottom:30px;
+.wave {
+    width: 100%;
+    height: 45px;
+    margin: 25px 0 30px 0;
     background-repeat: repeat-x;
     background-size: 200px 45px;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='45'><path d='M0 22 Q25 0 50 22 T100 22 T150 22 T200 22' fill='none' stroke='black' stroke-width='2'/></svg>");
-    animation: waveLoop 3s linear infinite;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='45'><path d='M0 22 Q25 0 50 22 T100 22 T150 22 T200 22' stroke='black' stroke-width='2' fill='none'/></svg>");
 }
 
-@keyframes waveLoop {
-    0% { background-position: 0 0; }
-    100% { background-position: -200px 0; }
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 45px;
+    margin-top: 20px;
 }
 
-.container{
-    width:100%;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:45px;
-    margin-top:20px;
+.box {
+    width: 330px;
+    padding: 25px;
+    background: white;
+    border: 2.3px solid black;
+    border-radius: 22px;
+    text-align: center;
+    box-shadow: 3px 4px 0px #00000030;
+    transition: 0.2s;
 }
 
-.box{
-    width:330px;
-    padding:25px;
-    background:white;
-    border:2.3px solid black;
-    border-radius:22px;
-    text-align:center;
-    box-shadow:3px 4px 0px #00000030;
-    transition:0.2s;
-}
-.box:hover{
-    transform:translateY(-4px);
-    box-shadow:6px 7px 0px #00000030;
+.box:hover {
+    transform: translateY(-4px);
+    box-shadow: 6px 7px 0px #00000030;
 }
 
-.box h3{
-    font-size:26px;
-    margin:0;
-    letter-spacing:1px;
+.box h3 {
+    font-size: 26px;
+    margin: 0;
+    letter-spacing: 1px;
 }
 
-.underline{
-    width:70px;
-    height:4px;
-    background:#e46d25;
-    margin:8px auto 18px auto;
-    border-radius:3px;
+.underline {
+    width: 70px;
+    height: 4px;
+    background: #e46d25;
+    margin: 8px auto 18px auto;
+    border-radius: 3px;
 }
 
-.box p{
-    font-size:15px;
-    line-height:1.5em;
+.box p {
+    font-size: 15px;
+    line-height: 1.5em;
 }
 
-.links ul{
-    list-style:none;
-    padding:0;
-    margin:8px 0;
+.links ul {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0;
 }
 
-.links a{
-    text-decoration:none;
-    font-size:16px;
-    color:#e46d25;
-    font-weight:bold;
-}
-.links a:hover{
-    text-decoration:underline;
+.links a {
+    text-decoration: none;
+    font-size: 16px;
+    color: #e46d25;
+    font-weight: bold;
 }
 
-.small-wave{
-    height:35px;
-    margin-top:50px;
-    margin-bottom:0;
+.links a:hover {
+    text-decoration: underline;
+}
+
+.small-wave {
+    height: 35px;
+    margin: 50px 0 0 0;
     background-repeat: repeat-x;
     background-size: 200px 35px;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='35'><path d='M0 17 Q25 -2 50 17 T100 17 T150 17 T200 17' fill='none' stroke='black' stroke-width='2'/></svg>");
-    animation: waveLoop 3s linear infinite;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='35'><path d='M0 17 Q25 -2 50 17 T100 17 T150 17 T200 17' stroke='black' stroke-width='2' fill='none'/></svg>");
 }
 
-.footer{
-    margin-top:60px;
-    padding:20px 0;
-    font-size:14px;
-    color:#444;
-    background:#f0f0f0;
-    border-top:2px solid black;
-    letter-spacing:0.5px;
+.footer {
+    margin-top: 60px;
+    padding: 20px 0;
+    font-size: 14px;
+    color: #444;
+    background: #f0f0f0;
+    border-top: 2px solid black;
+    letter-spacing: 0.5px;
+}
+
+.leaf {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background-image: url("side_banner.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.8;
+    transition: top 5s linear, left 5s linear, transform 5s linear;
 }
 </style>
 </head>
 <body>
 
-<img src="banner.png" alt="Banner Image" class="main-banner">
-
+<img src="banner.png" class="main-banner">
 <div class="wave"></div>
 
 <div class="container">
 
     <div class="box">
-        <h3>Hi There!</h3>
+        <h3>Hello!</h3>
         <div class="underline"></div>
-        <p>Hi there and welcome to my part of the internet!</p>
+        <p>Welcome to my little corner of the internet. I’m glad you’re here!</p>
     </div>
 
     <div class="box">
         <h3>What I Do</h3>
         <div class="underline"></div>
-        <p>I make games and projects as a hobby.</p>
-        <p>I mostly use Python with the Pygame library to build all kinds of things.</p>
+        <p>I create games and fun projects as a hobby.</p>
+        <p>Python and Pygame are my go-to tools for bringing ideas to life.</p>
     </div>
 
     <div class="box">
         <h3>Where to Find Me</h3>
         <div class="underline"></div>
-        <p>You can find my work here:</p>
+        <p>Check out my work on these platforms:</p>
 
         <div class="links">
-            <ul><a href="https://ebonleaf.itch.io/">itch.io</a></ul>
-            <ul><a href="https://github.com/EbonLeaf">GitHub</a></ul>
-            <ul><a href="https://youtube.com/@EbonLeaf">YouTube</a></ul>
+            <ul><a href="https://ebonleaf.itch.io/" target="_blank">itch.io</a></ul>
+            <ul><a href="https://github.com/EbonLeaf" target="_blank">GitHub</a></ul>
+            <ul><a href="https://youtube.com/@EbonLeaf" target="_blank">YouTube</a></ul>
         </div>
     </div>
 
 </div>
 
-<div class="small-wave"></div><br><br>
+<div class="small-wave"></div>
+<br><br>
+<div class="footer">© 2025 EbonLeaf — All Rights Reserved.</div>
+<script>
+const wave1 = document.querySelector(".wave");
+const wave2 = document.querySelector(".small-wave");
 
-<div>© 2025 EbonLeaf — All Rights Reserved.</div><br><br>
+function spawnLeaf() {
+    const leaf = document.createElement("div");
+    leaf.className = "leaf";
+
+    const size = Math.random() * 30 + 25; 
+    leaf.style.width = size + "px";
+    leaf.style.height = size + "px";
+
+    const startX = Math.random() * window.innerWidth;
+    leaf.style.left = startX + "px";
+    leaf.style.top = (wave1.offsetTop + wave1.offsetHeight + Math.random() * 10) + "px";
+
+    const startRotate = Math.random() * 360;
+
+    document.body.appendChild(leaf);
+
+    const fallDuration = Math.random() * 5 + 5;
+    const targetTop = wave2.offsetTop - size - 5;
+
+    leaf.style.transition = `top ${fallDuration}s linear`;
+    setTimeout(() => {
+        leaf.style.top = targetTop + "px";
+    }, 50);
+
+    const swingAmplitude = Math.random() * 50 + 20;
+    const swingSpeed = Math.random() * 2000 + 2000;
+
+    let startTime = null;
+
+    function swing(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const elapsed = timestamp - startTime;
+
+        const x = startX + swingAmplitude * Math.sin((2 * Math.PI / swingSpeed) * elapsed);
+        leaf.style.transform = `translateX(${x - startX}px) rotate(${startRotate}deg)`;
+
+        if (elapsed < fallDuration * 1000) {
+            requestAnimationFrame(swing);
+        }
+    }
+
+    requestAnimationFrame(swing);
+
+    setTimeout(() => {
+        leaf.style.transition = "opacity 1s ease";
+        leaf.style.opacity = 0;
+    }, fallDuration * 1000);
+
+    setTimeout(() => {
+        leaf.remove();
+    }, (fallDuration + 1) * 1000);
+}
+
+setInterval(spawnLeaf, 1000);
+</script>
+
 
 </body>
 </html>
