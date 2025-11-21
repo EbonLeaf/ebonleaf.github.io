@@ -12,6 +12,20 @@ body {
     background: #fafafa;
     text-align: center;
     overflow-x: hidden;
+    position: relative;
+    cursor: none;
+}
+
+.cursor-dot {
+    position: fixed;
+    width: 16px;
+    height: 16px;
+    background: #e46d25;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    transition: transform 0.05s ease;
 }
 
 img.main-banner {
@@ -21,16 +35,35 @@ img.main-banner {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    opacity: 0;
+    animation: fadeIn 2s ease forwards, bannerBounce 3s ease-in-out infinite;
 }
 
+@keyframes fadeIn { to { opacity: 1; } }
+@keyframes bannerBounce {
+    0%,100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-8px) scale(1.02); }
+}
+
+.wave, .small-wave {
+    background-repeat: repeat-x;
+    background-size: 200px 45px;
+    animation: waveMove 8s linear infinite;
+}
 .wave {
     width: 100%;
     height: 45px;
     margin: 25px 0 30px 0;
-    background-repeat: repeat-x;
-    background-size: 200px 45px;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='45'><path d='M0 22 Q25 0 50 22 T100 22 T150 22 T200 22' stroke='black' stroke-width='2' fill='none'/></svg>");
 }
+.small-wave {
+    height: 35px;
+    margin: 50px 0 0 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='35'><path d='M0 17 Q25 -2 50 17 T100 17 T150 17 T200 17' stroke='black' stroke-width='2' fill='none'/></svg>");
+    animation-duration: 6s;
+}
+
+@keyframes waveMove { 0% { background-position-x:0;} 100% {background-position-x:200px;} }
 
 .container {
     width: 100%;
@@ -49,75 +82,41 @@ img.main-banner {
     border-radius: 22px;
     text-align: center;
     box-shadow: 3px 4px 0px #00000030;
-    transition: 0.2s;
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    animation: boxFade 1s forwards;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s;
 }
 
 .box:hover {
-    transform: translateY(-4px);
-    box-shadow: 6px 7px 0px #00000030;
+    transform: translateY(-6px) scale(1.05);
+    box-shadow: 0 0 20px #e46d25aa;
+    filter: drop-shadow(0 0 8px #e46d25aa);
 }
 
-.box h3 {
-    font-size: 26px;
-    margin: 0;
-    letter-spacing: 1px;
-}
+.box:nth-child(1) { animation-delay: 0.5s; }
+.box:nth-child(2) { animation-delay: 1s; }
+.box:nth-child(3) { animation-delay: 1.5s; }
+.box:nth-child(4) { animation-delay: 2s; }
 
-.underline {
-    width: 70px;
-    height: 4px;
-    background: #e46d25;
-    margin: 8px auto 18px auto;
-    border-radius: 3px;
-}
+@keyframes boxFade { to { opacity:1; transform: translateY(0) scale(1);} }
 
-.box p {
-    font-size: 15px;
-    line-height: 1.5em;
-}
+.box h3 { font-size: 26px; margin:0; letter-spacing:1px; }
+.underline { width:70px; height:4px; background:#e46d25; margin:8px auto 18px auto; border-radius:3px; animation: growWidth 0.5s ease forwards;}
+@keyframes growWidth { from { width:0; } to { width:70px; } }
 
-.links ul {
-    list-style: none;
-    padding: 0;
-    margin: 8px 0;
-}
+.box p { font-size:15px; line-height:1.5em; }
+.links ul { list-style:none; padding:0; margin:8px 0; }
+.links a { text-decoration:none; font-size:16px; color:#e46d25; font-weight:bold; display:inline-block; transition: transform 0.3s ease,color 0.3s ease;}
+.links a:hover { transform: translateY(-3px) scale(1.05); color:#f0801a; text-decoration:underline; }
 
-.links a {
-    text-decoration: none;
-    font-size: 16px;
-    color: #e46d25;
-    font-weight: bold;
-}
-.email {
-    color: #e46d25;
-    font-weight: bold;
-}
-.links a:hover.{
-    text-decoration: underline;
-}
-
-.small-wave {
-    height: 35px;
-    margin: 50px 0 0 0;
-    background-repeat: repeat-x;
-    background-size: 200px 35px;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='35'><path d='M0 17 Q25 -2 50 17 T100 17 T150 17 T200 17' stroke='black' stroke-width='2' fill='none'/></svg>");
-}
-
-.footer {
-    margin-top: 60px;
-    padding: 20px 0;
-    font-size: 14px;
-    color: #444;
-    background: #f0f0f0;
-    border-top: 2px solid black;
-    letter-spacing: 0.5px;
-}
+.email { color:#e46d25; font-weight:bold; }
+.footer { margin-top:60px; padding:20px 0; font-size:14px; color:#444; background:#f0f0f0; border-top:2px solid black; letter-spacing:0.5px; }
 
 .leaf {
     position: absolute;
-    width: 32px;
-    height: 32px;
+    width:32px;
+    height:32px;
     background-image: url("leaf.png");
     background-size: contain;
     background-repeat: no-repeat;
@@ -126,6 +125,7 @@ img.main-banner {
     opacity: 0.8;
     transition: top 5s linear, left 5s linear, transform 5s linear;
 }
+
 </style>
 </head>
 <body>
@@ -134,32 +134,27 @@ img.main-banner {
 <div class="wave"></div>
 
 <div class="container">
-
     <div class="box">
         <h3>Hello!</h3>
         <div class="underline"></div>
         <p>Welcome to my little corner of the internet. I’m glad you’re here!</p>
     </div>
-
     <div class="box">
         <h3>What I Do</h3>
         <div class="underline"></div>
         <p>I create games and fun projects as a hobby.</p>
         <p>Python and Pygame are my go-to tools for bringing ideas to life.</p>
     </div>
-
     <div class="box">
         <h3>Where to Find Me</h3>
         <div class="underline"></div>
         <p>Check out my work on these platforms:</p>
-
         <div class="links">
             <ul><a href="https://ebonleaf.itch.io/" target="_blank">itch.io</a></ul>
             <ul><a href="https://github.com/EbonLeaf" target="_blank">GitHub</a></ul>
             <ul><a href="https://youtube.com/@EbonLeaf" target="_blank">YouTube</a></ul>
         </div>
     </div>
-
     <div class="box">
         <h3>How to contact Me</h3>
         <div class="underline"></div>
@@ -170,7 +165,10 @@ img.main-banner {
 
 <div class="small-wave"></div>
 <br><br>
-<div >© 2025 EbonLeaf — All Rights Reserved.</div><br><br>
+<div>© 2025 EbonLeaf — All Rights Reserved.</div><br><br>
+<div class="cursor-dot"></div>
+
+
 <script>
 const wave1 = document.querySelector(".wave");
 const wave2 = document.querySelector(".small-wave");
@@ -195,47 +193,38 @@ function spawnLeaf() {
     const targetTop = wave2.offsetTop - size - 5;
 
     leaf.style.transition = `top ${fallDuration}s linear`;
-    setTimeout(() => {
-        leaf.style.top = targetTop + "px";
-    }, 50);
+    setTimeout(() => { leaf.style.top = targetTop + "px"; }, 50);
 
     const swingAmplitude = Math.random() * 50 + 20;
     const swingSpeed = Math.random() * 2000 + 2000;
 
     let startTime = null;
-
     function swing(timestamp) {
         if (!startTime) startTime = timestamp;
         const elapsed = timestamp - startTime;
-
         const x = startX + swingAmplitude * Math.sin((2 * Math.PI / swingSpeed) * elapsed);
         leaf.style.transform = `translateX(${x - startX}px) rotate(${startRotate}deg)`;
-
-        if (elapsed < fallDuration * 1000) {
-            requestAnimationFrame(swing);
-        }
+        if (elapsed < fallDuration * 1000) requestAnimationFrame(swing);
     }
-
     requestAnimationFrame(swing);
 
-    setTimeout(() => {
-        leaf.style.transition = "opacity 1s ease";
-        leaf.style.opacity = 0;
-    }, fallDuration * 1000);
-
-    setTimeout(() => {
-        leaf.remove();
-    }, (fallDuration + 1) * 1000);
+    setTimeout(() => { leaf.style.transition = "opacity 1s ease"; leaf.style.opacity = 0; }, fallDuration * 1000);
+    setTimeout(() => { leaf.remove(); }, (fallDuration + 1) * 1000);
 }
 
-setInterval(spawnLeaf, 1000);
-</script>
+const cursor = document.querySelector('.cursor-dot');
 
+document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+});
+setInterval(() => {
+    spawnLeaf();
+    if (Math.random() > 0.5) spawnLeaf();
+    if (Math.random() > 0.7) spawnLeaf();
+}, 1000);
+
+</script>
 
 </body>
 </html>
-
-
-
-
-
